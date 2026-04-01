@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="request-page">   
+  <div class="request-card">
+
+    <div class="card-header">
+      <h2>Request E-Waste Pickup</h2>
+      <p>Dispose your electronic waste responsibly and earn value for it.</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="request-form">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label>Item</label>
+        <select name="item_name" required>
+          <option value="">Select Item</option>
+          <option value="mobile">Mobile</option>
+          <option value="mobile">Battery</option>
+          <option value="laptop">Laptop</option>
+          <option value="desktop">Desktop</option>
+          <option value="tablet">Tablet</option>
+          <option value="keyboard">Keyboard</option>
+          <option value="mouse">Mouse</option>
+          <option value="headphone">Headphone</option>
+          <option value="earphone">Earphone</option>
+          <option value="charger">Charger</option>
+          <option value="smartwatch">Smartwatch</option>
+          <option value="camera">Camera</option>
+          <option value="printer">Printer</option>
+          <option value="monitor">Monitor</option>
+          <option value="router">Router</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" name="quantity" min="1" max="99" required>
+      </div>
+
+      <div class="form-group">
+        <label>Condition</label>
+        <select name="condition" required>
+          <option value="">Select Condition</option>
+          <option value="working">Working</option>
+          <option value="dead">Dead / Not Working</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Device Details (Optional)</label>
+        <textarea
+          name="device_details"
+          rows="4"
+          placeholder="Brand, model, damage, missing parts (optional)">
+        </textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Upload Device Photos (2–5)</label>
+        <input type="file" name="images" multiple required>
+      </div>
+
+    {% if messages %}
+  {% for message in messages %}
+    <p style="color:red; text-align:center; margin-top:10px;">
+      {{ message }}
+    </p>
+  {% endfor %}
+{% endif %}
+
+      <button type="submit" class="submit-btn">
+        Submit Request
+      </button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

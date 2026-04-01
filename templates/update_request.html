@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update E-Waste Request</h2>
+
+<p><strong>Item:</strong> {{ ewaste.item_name }}</p>
+<p><strong>Quantity:</strong> {{ ewaste.quantity }}</p>
+<p><strong>Estimated Amount:</strong> ₹ {{ ewaste.estimated_amount }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>Final Amount</label>
+    <input type="number" name="final_amount" required>
+
+    <button type="submit">Mark as Completed</button>
+</form>
+{% endblock %}

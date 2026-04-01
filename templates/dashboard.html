@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="dashboard-wrapper">
+  {% if is_admin %}
+  <h2 class="section-title">All E-Waste Requests (Admin)</h2>
+    {% else %}
+  <h2 class="section-title">My E-Waste Requests</h2>
+  {% endif %}
+  
+  <div class="request-header">
+    <div>Item</div>
+    <div>Quantity</div>
+    <div>Condition</div>
+    <div>Status</div>
+    <div>Estimated Amount</div>
+    <div>Final Amount</div>
+  </div>
+
+  <div class="request-list">
+    {% for r in requests %}
+    <div class="request-row">
+      <div class="cell strong">{{ r.item_name }}</div>
+      <div class="cell">{{ r.quantity }}</div>
+      <div class="cell">{{ r.condition }}</div>
+      <div class="cell status {{ r.status|lower }}">{{ r.status }}</div>
+      <div class="cell">{% if r.estimated_amount %}₹ {{ r.estimated_amount }}{% else %}--{% endif %}</div>
+      <div class="cell">{% if r.final_amount %}₹ {{ r.final_amount }}{% else %}--{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

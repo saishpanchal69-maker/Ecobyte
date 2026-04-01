@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard-container">
+
+    <h2 class="page-title">Delivery Agent Dashboard</h2>
+
+    <div class="table-header">
+        <div>ID</div>
+        <div>User</div>
+        <div>Item</div>
+        <div>Quantity</div>
+        <div>Status</div>
+        <div>Action</div>
+    </div>
+
+    {% for req in requests %}
+    <div class="request-row">
+        <div>{{ req.id }}</div>
+        <div>{{ req.user.username }}</div>
+        <div>{{ req.item_name }}</div>
+        <div>{{ req.quantity }}</div>
+
+        <div class="status {{ req.status|lower }}">
+            {{ req.status }}
+        </div>
+
+        <div>
+            {% if req.status != "PAID" %}
+                <a class="update-btn" href="{% url 'core:agent_update_status' req.id %}">
+                    Update
+                </a>
+            {% else %}
+                Completed
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+        <p>No assigned requests yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

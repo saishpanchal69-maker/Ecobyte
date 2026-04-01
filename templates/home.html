@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="home-center">
+  <div class="home-card">
+
+    <h2>
+      E-Waste <span class="highlight">Collection</span>
+    </h2>
+
+    <p class="subtitle">
+      Dispose Your E-Waste Responsibly
+    </p>
+
+    <div class="home-buttons">
+
+  {% if not user.is_authenticated %}
+    <a href="{% url 'core:login' %}" class="btn">Login</a>
+  {% endif %}
+
+  <!-- Always show -->
+  <a href="{% url 'core:register' %}" class="btn">Register</a>
+  <a href="{% url 'core:price_list' %}" class="btn">Price List</a>
+  
+  <!-- Hide only for agent -->
+  {% if user.is_authenticated and not user.userprofile.is_agent %}
+    <a href="{% url 'core:request_pickup' %}" class="btn">Request Pickup</a>
+
+  {% endif %}
+
+</div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="profile-card">
+
+<h2>User Profile</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="profile-row">
+<label>Username</label>
+<input type="text" name="username"
+value="{{ request.user.username }}"
+readonly id="username">
+</div>
+
+<div class="profile-row">
+<label>Email</label>
+<input type="email" name="email"
+value="{{ request.user.email }}"
+readonly id="email">
+</div>
+
+<button type="button" onclick="enableEdit()" id="editBtn">
+Change Information
+</button>
+
+<button type="submit" id="saveBtn" style="display:none;">
+Save Changes
+</button>
+
+<a href="{% url 'core:change_password' %}">
+<button type="button" class="pass-btn">
+Change Password
+</button>
+</a>
+
+</form>
+
+</div>
+{% endblock %}

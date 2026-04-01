@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard-container">
+
+    <h2 class="page-title">Recycler Dashboard</h2>
+
+    <div class="table-header">
+        <div>User</div>
+        <div>Item</div>
+        <div>Quantity</div>
+        <div>Status</div>
+        <div>Estimated ₹</div>
+        <div>Assign Agent</div>
+    </div>
+
+    {% for req in requests %}
+    <div class="request-row">
+        <div>{{ req.user.username }}</div>
+        <div>{{ req.item_name }}</div>
+        <div>{{ req.quantity }}</div>
+        <div class="status pending">{{ req.status }}</div>
+        <div>₹ {{ req.estimated_amount }}</div>
+
+        <div>
+            {% if not req.assigned_agent %}
+                <form method="POST" action="{% url 'core:assign_agent' req.id %}">
+                    {% csrf_token %}
+                    <select name="agent_id">
+                        {% for agent in agents %}
+                            <option value="{{ agent.id }}">
+                                {{ agent.username }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button class="update-btn" type="submit">Assign</button>
+                </form>
+            {% else %}
+                Assigned to {{ req.assigned_agent.username }}
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

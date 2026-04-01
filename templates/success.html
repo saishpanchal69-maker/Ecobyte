@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="success-box">
+    <h2>Request Submitted Successfully 👍✅</h2>
+    <p>Your e-waste pickup request has been verified.</p>
+    <p class="redirect-text">Redirecting to dashboard...</p>
+</div>
+
+<meta http-equiv="refresh" content="3;url={% url 'core:dashboard' %}">
+
+{% endblock %}

@@ -1,0 +1,17 @@
+PRICE_TABLE = {
+    'mobile': {'working': 800, 'dead': 150},
+    'battery': {'working': 500, 'dead': 70},
+    'laptop': {'working': 3000, 'dead': 700},
+    'desktop': {'working': 2000, 'dead': 300},
+    'tablet': {'working': 1000, 'dead': 250},
+    'keyboard': {'working': 200, 'dead': 50},
+    'mouse': {'working': 150, 'dead': 30},
+    'headphone': {'working': 300, 'dead': 70},
+    'earphone': {'working': 250, 'dead': 60},
+    'charger': {'working': 400, 'dead': 80},
+    'smartwatch': {'working': 1200, 'dead': 300},
+    'camera': {'working': 1600, 'dead': 500},
+    'printer': {'working': 1800, 'dead': 400},
+    'monitor': {'working': 2100, 'dead': 500},
+    'router': {'working': 900, 'dead': 200},
+}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="page-center">
+  <div class="card-box wide">
+    <h2 class="card-title">Estimated Price List</h2>
+    <p class="card-subtitle">
+      Prices are indicative, Final amount after verification
+    </p>
+    {% if price_table %}
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Device</th>
+          <th>Working (₹)</th>
+          <th>Dead (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for device, prices in price_table.items %}
+        <tr>
+          <td>{{ device|title }}</td>
+          <td>₹ {{ prices.working }}</td>
+          <td>₹ {{ prices.dead }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No price data available</p>
+    {% endif %}
+    <div class="cta-area">
+      <a href="{% url 'core:request_pickup' %}" class="btn">Continue & Request Pickup</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
